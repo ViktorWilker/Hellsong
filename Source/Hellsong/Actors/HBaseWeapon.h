@@ -1,9 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+﻿
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "HBaseEquippable.h"
 #include "HBaseWeapon.generated.h"
 
 UENUM(BlueprintType)
@@ -14,23 +13,15 @@ enum class EWeaponName : uint8
 };
 
 UCLASS()
-class HELLSONG_API AHBaseWeapon : public AActor
+class HELLSONG_API AHBaseWeapon : public AHBaseEquippable
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	AHBaseWeapon();
 	virtual void Tick(float DeltaTime) override;
 	
 protected:
 	virtual void BeginPlay() override;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "WeaponInfos")
-	EWeaponName Name;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "WeaponInfos")
-	UStaticMeshComponent* StaticWeaponMesh;
-
-private:
 
 };
