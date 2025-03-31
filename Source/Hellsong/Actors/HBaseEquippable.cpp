@@ -53,6 +53,7 @@ void AHBaseEquippable::OnUnequipped()
 
 void AHBaseEquippable::SetEquipped(bool value)
 {
+	bIsEquipped = value;
 }
 
 bool AHBaseEquippable::IsEquipped()
