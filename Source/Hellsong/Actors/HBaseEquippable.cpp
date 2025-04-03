@@ -8,8 +8,12 @@
 AHBaseEquippable::AHBaseEquippable()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	ItemSkeletalMesh =  CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMesh"));
 	ItemStaticMesh =  CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
+
+	ItemSkeletalMesh->SetupAttachment(RootComponent);
+	ItemStaticMesh->SetupAttachment(RootComponent);
 }
 
 void AHBaseEquippable::BeginPlay()
@@ -18,7 +22,6 @@ void AHBaseEquippable::BeginPlay()
 	
 }
 
-// Called every frame
 void AHBaseEquippable::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
