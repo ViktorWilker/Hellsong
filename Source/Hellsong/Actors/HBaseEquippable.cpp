@@ -40,7 +40,7 @@ UPrimitiveComponent* AHBaseEquippable::GetItemMesh()
 	}
 }
 
-void AHBaseEquippable::OnEquipped()
+void AHBaseEquippable::OnEquipped_Implementation()
 {
 	SetEquipped(true);
 	AttachActor(AttachSocketName);

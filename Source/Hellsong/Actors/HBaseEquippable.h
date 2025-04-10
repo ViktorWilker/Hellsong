@@ -18,9 +18,10 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	UPrimitiveComponent* GetItemMesh();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void OnEquipped();
-
+	virtual void OnEquipped_Implementation();
+	
 	UFUNCTION(BlueprintCallable)
 	void OnUnequipped();
 
