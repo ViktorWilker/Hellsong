@@ -34,8 +34,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AttachActor(FName SocketName);
 
-	UPROPERTY(EditAnywhere)
-	FName AttachSocketName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Equippable")
+	FName EquipedSocket;
 
 protected:
 	virtual void BeginPlay() override;

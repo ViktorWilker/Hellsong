@@ -43,7 +43,7 @@ UPrimitiveComponent* AHBaseEquippable::GetItemMesh()
 void AHBaseEquippable::OnEquipped_Implementation()
 {
 	SetEquipped(true);
-	AttachActor(AttachSocketName);
+	AttachActor(EquipedSocket);
 }
 
 void AHBaseEquippable::OnUnequipped()
