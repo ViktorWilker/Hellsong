@@ -47,7 +47,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetIsSptinting(bool value);
-	
+
 protected:
 	virtual void BeginPlay() override;
 	
@@ -58,5 +58,5 @@ protected:
 
 private:
 	bool bIsSprinting = false;
- 
+	FVector MovementInput;
 };

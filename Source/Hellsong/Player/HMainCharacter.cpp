@@ -35,7 +35,13 @@ void AHMainCharacter::BeginPlay()
 void AHMainCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	float TargetSpeed = bIsSprinting ? SprintSpeed : WalkSpeed;
+	const float InputMagnitude = MovementInput.Size();
+	float TargetSpeed = 0.f;
+
+	if(InputMagnitude > KINDA_SMALL_NUMBER)
+	{
+		TargetSpeed = bIsSprinting ? SprintSpeed : WalkSpeed;
+	}
 
 	GetCharacterMovement()->MaxWalkSpeed = FMath::FInterpTo(
 		GetCharacterMovement()->MaxWalkSpeed, 
@@ -44,8 +50,7 @@ void AHMainCharacter::Tick(float DeltaTime)
 		InterpSpeed
 	);
 
-	//UE_LOG(LogTemp, Warning, TEXT("Tick: Current Speed = %f, Target Speed = %f"), 
-	//GetCharacterMovement()->MaxWalkSpeed, TargetSpeed);
+	MovementInput = FVector::ZeroVector;
 }
 
 void AHMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -82,6 +87,7 @@ void AHMainCharacter::Move(const FInputActionValue& Value)
 		
 		AddMovementInput(ForwardDirection, MovementVector.Y);
 		AddMovementInput(RightDirection, MovementVector.X);
+		MovementInput = FVector(MovementVector.X, MovementVector.Y, 0.f);
 	}
 }
 
