@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BehaviorTree/BehaviorTree.h"
 #include "GameFramework/Character.h"
 #include "BaseEnemy.generated.h"
 
@@ -14,12 +15,18 @@ class HELLSONG_API ABaseEnemy : public ACharacter
 public:
 	ABaseEnemy();
 
-protected:
-	virtual void BeginPlay() override;
-
-public:	
 	virtual void Tick(float DeltaTime) override;
 	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UBehaviorTree* GetBehaviorTree() const;
+	
+protected:
+	virtual void BeginPlay() override;
+
+private:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="AI", meta = (AllowPrivateAccess = true))
+	UBehaviorTree* Tree;
+
 
 };
