@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "GameFramework/Character.h"
+#include "IA/PatrolPath.h"
 #include "BaseEnemy.generated.h"
 
 UCLASS()
@@ -28,5 +29,7 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="AI", meta = (AllowPrivateAccess = true))
 	UBehaviorTree* Tree;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="AI", meta = (AllowPrivateAccess = true))
+	APatrolPath* PatrolPath;
 
 };

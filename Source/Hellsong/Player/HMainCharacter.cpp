@@ -3,6 +3,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AISenseConfig_Sight.h"
 
 AHMainCharacter::AHMainCharacter()
 {
@@ -13,6 +15,8 @@ AHMainCharacter::AHMainCharacter()
 	
 	GetCharacterMovement()->bOrientRotationToMovement = true;	
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f);
+	
+	SetupStimulusSource();
 }
 
 void AHMainCharacter::SetIsSptinting(bool value)
@@ -112,4 +116,14 @@ void AHMainCharacter::StopSprint()
 {
 	bIsSprinting = false;
 	UE_LOG(LogTemp, Error, TEXT("Sprint Stoped!"));
+}
+
+void AHMainCharacter::SetupStimulusSource()
+{
+	StimulusSource = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
+	if(StimulusSource)
+	{
+		StimulusSource->RegisterForSense(TSubclassOf<UAISense_Sight>());
+		StimulusSource->RegisterWithPerceptionSystem();
+	}
 }

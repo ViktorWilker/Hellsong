@@ -57,6 +57,9 @@ protected:
 	void StopSprint();
 
 private:
+	class UAIPerceptionStimuliSourceComponent* StimulusSource;
+	void SetupStimulusSource();
+	
 	bool bIsSprinting = false;
 	FVector MovementInput;
 };
