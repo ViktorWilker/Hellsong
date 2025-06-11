@@ -8,6 +8,15 @@ ABaseEnemy::ABaseEnemy()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+int ABaseEnemy::MeleeAttack_Implementation()
+{
+	if(Montage)
+	{
+		PlayAnimMontage(Montage);
+	}
+	return IAICombatInterface::MeleeAttack_Implementation();
+}
+
 void ABaseEnemy::BeginPlay()
 {
 	Super::BeginPlay();
@@ -26,5 +35,15 @@ void ABaseEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 UBehaviorTree* ABaseEnemy::GetBehaviorTree() const
 {
 	return Tree;
+}
+
+APatrolPath* ABaseEnemy::GetPatrolPath() const
+{
+	return PatrolPath;
+}
+
+UAnimMontage* ABaseEnemy::GetMontage() const
+{
+	return Montage;
 }
 
