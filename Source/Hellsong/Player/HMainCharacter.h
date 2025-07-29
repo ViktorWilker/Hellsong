@@ -34,10 +34,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
-	float WalkSpeed = 475.f;
+	float WalkSpeed = 500.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
-	float SprintSpeed = 600.f;
+	float SprintSpeed = 700.f;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
 	float InterpSpeed = 8.f;
