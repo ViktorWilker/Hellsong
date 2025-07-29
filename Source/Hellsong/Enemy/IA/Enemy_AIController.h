@@ -25,6 +25,7 @@ protected:
 	virtual void OnPossess(APawn* InPawn) override;
 
 private:
+	class UAISense_Hearing* HearingConfig;
 	class UAISenseConfig_Sight* SightConfig;
 
 	void SetupPerceptionSystem();
