@@ -8,7 +8,7 @@ public class Hellsong : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "InputBuffer", "EnhancedInput", "GameplayAbilities", "GameplayTasks", "NavigationSystem", "AIModule"});
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "InputBuffer", "EnhancedInput", "GameplayAbilities", "GameplayTasks", "NavigationSystem", "AIModule", "GameplayTags"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

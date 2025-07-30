@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "InputActionValue.h"
 #include "GameFramework/Character.h"
+#include "Hellsong/ActorComponent/StateManagerComponent.h"
 #include "HMainCharacter.generated.h"
 
 UCLASS()
@@ -47,6 +48,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetIsSptinting(bool value);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	UStateManagerComponent* StateManager;
 
 protected:
 	virtual void BeginPlay() override;
