@@ -22,7 +22,7 @@ void UStateManagerComponent::SetAction(FGameplayTag NewAction)
 	{
 		OnActionEnded.Broadcast(CurrentCharacterAction);
 	}
-
+ 
 	CurrentCharacterAction = NewAction;
 
 	if(NewAction.IsValid())
