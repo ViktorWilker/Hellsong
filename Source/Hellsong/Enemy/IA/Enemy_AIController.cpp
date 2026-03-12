@@ -4,6 +4,7 @@
 #include "Enemy_AIController.h"
 
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Hellsong/ActorComponent/StatsComponent.h"
 #include "Hellsong/Player/HMainCharacter.h"
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISenseConfig_Sight.h"

@@ -6,6 +6,7 @@
 #include "NavigationSystem.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "GameFramework/Character.h"
+#include "Hellsong/ActorComponent/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 UBTTask_FindPlayerLocation::UBTTask_FindPlayerLocation(FObjectInitializer const& ObjectInitializer)
@@ -17,6 +18,14 @@ EBTNodeResult::Type UBTTask_FindPlayerLocation::ExecuteTask(UBehaviorTreeCompone
 {
 	if(ACharacter* const player = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))
 	{
+		if (const auto statsComp = player->FindComponentByClass<UStatsComponent>())
+		{
+			if (statsComp->GetCurrentStatValue(EStats::Health) <= 0.f)
+			{
+				FinishLatentTask(OwnerComp,EBTNodeResult::Succeeded);
+				return EBTNodeResult::Succeeded;
+			}
+		}
 		FVector const playerlocation = player->GetActorLocation();
 		if(SearchRandom)
 		{

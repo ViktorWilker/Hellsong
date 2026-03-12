@@ -25,6 +25,30 @@ void AHMainCharacter::SetIsSptinting(bool value)
 	bIsSprinting = value;
 }
 
+void AHMainCharacter::SetIsDead(bool value)
+{
+	bIsDead = value;
+}
+
+bool AHMainCharacter::IsDead()
+{
+	return bIsDead;
+}
+
+void AHMainCharacter::ApplyHitStop(AActor* HitActor, float Duration)
+{
+	if (ACharacter* HitCharacter = Cast<ACharacter>(HitActor))
+	{
+		HitCharacter->CustomTimeDilation = 0.05f; 
+        
+		FTimerHandle HitStopTimer;
+		GetWorldTimerManager().SetTimer(HitStopTimer, [HitCharacter]()
+		{
+			HitCharacter->CustomTimeDilation = 1.0f; 
+		}, Duration, false);
+	}
+}
+
 void AHMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();

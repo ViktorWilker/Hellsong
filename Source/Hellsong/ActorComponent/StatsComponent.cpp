@@ -1,5 +1,6 @@
 #include "StatsComponent.h"
 
+#include "StateManagerComponent.h"
 #include "TimerManager.h"
 
 UStatsComponent::UStatsComponent()
@@ -42,6 +43,15 @@ void UStatsComponent::ModifyCurrentStatValue(EStats stat, float value, bool bSho
 
 void UStatsComponent::TakeDamage(float InDamage)
 {
+	if (InDamage == 0.f) return;
+	if (GetCurrentStatValue(EStats::Health) <= 0)
+	{
+		if (const auto statecomp = GetOwner()->FindComponentByClass<UStateManagerComponent>())
+		{
+			statecomp->SetState(FGameplayTag::RequestGameplayTag("Character.State.Dead"));
+			return;
+		}
+	}
 	ModifyCurrentStatValue(EStats::Health,InDamage * -1.0f, false);
 }
 

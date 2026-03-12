@@ -48,7 +48,16 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetIsSptinting(bool value);
-
+	
+	UFUNCTION(BlueprintCallable)
+	void SetIsDead(bool value);
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool IsDead();
+	
+	UFUNCTION(BlueprintCallable)
+	void ApplyHitStop(AActor* HitActor, float Duration);
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	UStateManagerComponent* StateManager;
 
@@ -65,5 +74,6 @@ private:
 	void SetupStimulusSource();
 	
 	bool bIsSprinting = false;
+	bool bIsDead = false;
 	FVector MovementInput;
 };

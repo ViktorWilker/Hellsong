@@ -14,7 +14,8 @@ enum class EStats : uint8
 	Health UMETA(DisplayName = "Health"),
 	Mana UMETA(DisplayName = "Mana"),
 	Sanctification UMETA(DisplayName = "Sanctification"),
-	Corruption UMETA(DisplayName = "Corruption")
+	Corruption UMETA(DisplayName = "Corruption"),
+	Balance UMETA(DisplayName = "Balance")
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnStatChangedSignature, EStats, StatType, float, NewValue);
