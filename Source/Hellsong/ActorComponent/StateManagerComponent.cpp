@@ -54,14 +54,14 @@ void UStateManagerComponent::ResetState()
 	CurrentState = FGameplayTag::RequestGameplayTag(FName("Character.State.Idle"));
 }
 
-FName UStateManagerComponent::GetCurrentState()
+FName UStateManagerComponent::GetCurrentState() const
 {
 	return CurrentState.GetTagName();
 }
 
-FGameplayTag UStateManagerComponent::GetCurrentAction()
+FName UStateManagerComponent::GetCurrentAction() const
 {
-	return CurrentCharacterAction;
+	return CurrentCharacterAction.GetTagName();
 }
 
 bool UStateManagerComponent::IsCurrentStateEqualToSAny(FGameplayTagContainer StatesToCheck)

@@ -30,10 +30,10 @@ public:
 	void ResetState();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	FName GetCurrentState();
+	FName GetCurrentState() const;
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	FGameplayTag GetCurrentAction();
+	FName GetCurrentAction() const;
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	bool IsCurrentStateEqualToSAny(FGameplayTagContainer StatesToCheck);
@@ -60,4 +60,5 @@ protected:
 private:
 	FGameplayTag CurrentState;
 	FGameplayTag CurrentCharacterAction;
+
 };
