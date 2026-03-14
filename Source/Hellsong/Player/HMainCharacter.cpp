@@ -78,6 +78,12 @@ void AHMainCharacter::Tick(float DeltaTime)
 		DeltaTime, 
 		InterpSpeed
 	);
+	
+	if (!bHasMovementInput)
+	{
+		MoveInputHeldTime = 0.f;
+	}
+	bHasMovementInput = false;
 
 	MovementInput = FVector::ZeroVector;
 }
@@ -103,6 +109,11 @@ bool AHMainCharacter::IsSprinting()
 
 void AHMainCharacter::Move(const FInputActionValue& Value)
 {
+	
+	bHasMovementInput = true;
+	MoveInputHeldTime += GetWorld()->GetDeltaSeconds();
+	if (MoveInputHeldTime < MoveInputThreshold) return;
+	
 	FVector2D MovementVector = Value.Get<FVector2D>();
 
 	if (Controller != nullptr)

@@ -37,7 +37,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void TakeDamage(float InDamage);
-
+	
+	UFUNCTION(BlueprintCallable)
+	void TakeBalance(int value);
+	
 	UFUNCTION()
 	void HandleDelayedRegen(EStats Stat);
 	
@@ -73,7 +76,15 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category="Stats")
 	FOnStatChangedSignature OnStatChanged;
+
+	UPROPERTY(EditAnywhere, Category = "RegenStats")
+	float ManaRegenRate = 2.f;
 	
+	UPROPERTY(EditAnywhere, Category = "RegenStats")
+	float HealthRegenRate = 2.f;
+	
+	UPROPERTY(EditAnywhere, Category = "RegenStats")
+	float BalanceRegenRate = 2.f;
 	
 protected:
 	virtual void BeginPlay() override;
@@ -84,5 +95,5 @@ private:
 	TMap<EStats, FTimerHandle> RegenTimerHandles;
 	TMap<EStats, FTimerHandle> RegenDelayHandles;
 	bool bCanRegenerate = false;
-	float ManaRegenRate = 2.f;
+
 };

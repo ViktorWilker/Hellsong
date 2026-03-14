@@ -20,7 +20,14 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
+	UFUNCTION(BlueprintCallable)
+	void SetIsDead(bool value);
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool IsDead();
+	
+	
 	UBehaviorTree* GetBehaviorTree() const;
 	APatrolPath* GetPatrolPath() const;
 	UAnimMontage* GetMontage() const;
@@ -39,4 +46,6 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation", meta=(AllowPrivateAccess="true"))
 	UAnimMontage* Montage;
+	
+	bool bIsDead = false;
 };

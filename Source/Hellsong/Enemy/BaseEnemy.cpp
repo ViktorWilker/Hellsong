@@ -32,6 +32,16 @@ void ABaseEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
+void ABaseEnemy::SetIsDead(bool value)
+{
+	bIsDead = value;
+}
+
+bool ABaseEnemy::IsDead()
+{
+	return bIsDead;
+}
+
 UBehaviorTree* ABaseEnemy::GetBehaviorTree() const
 {
 	return Tree;

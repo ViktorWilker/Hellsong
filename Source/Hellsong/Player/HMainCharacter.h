@@ -75,5 +75,12 @@ private:
 	
 	bool bIsSprinting = false;
 	bool bIsDead = false;
+	bool bHasMovementInput = false;
+
 	FVector MovementInput;
+	
+	float MoveInputHeldTime = 0.f;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement", meta = (AllowPrivateAccess = "true"))
+	float MoveInputThreshold = 0.15f;
 };

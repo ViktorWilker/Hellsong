@@ -55,6 +55,20 @@ void UStatsComponent::TakeDamage(float InDamage)
 	ModifyCurrentStatValue(EStats::Health,InDamage * -1.0f, false);
 }
 
+void UStatsComponent::TakeBalance(int value)
+{
+	if (value == 0){return;}
+	if (GetCurrentStatValue(EStats::Balance) <= 0){
+		if (const auto statecomp = GetOwner()->FindComponentByClass<UStateManagerComponent>())
+		{
+			statecomp->SetState(FGameplayTag::RequestGameplayTag("Character.State.Stunned"));
+			return;
+		}
+	}
+	ModifyCurrentStatValue(EStats::Balance,value * -1,false);
+	
+}
+
 void UStatsComponent::HandleDelayedRegen(EStats Stat)
 {
 	GetWorld()->GetTimerManager().ClearTimer(RegenTimerHandles.FindOrAdd(Stat));
@@ -75,9 +89,10 @@ void UStatsComponent::StartRegen(EStats StatType)
 {
 	FTimerDelegate RegenDelegate;
 	RegenDelegate.BindUObject(this, &UStatsComponent::RegenStat, StatType);
+	FTimerHandle& Handle = RegenTimerHandles.FindOrAdd(StatType);
 
 	GetWorld()->GetTimerManager().SetTimer(
-		RegenTimerHandles[StatType],
+		Handle,
 		RegenDelegate,
 		0.1f,
 		true
@@ -129,6 +144,10 @@ float UStatsComponent::GetRegenRate(EStats stat) const
 	{
 	case EStats::Mana:
 		return ManaRegenRate;
+	case EStats::Health:
+		return HealthRegenRate;
+	case EStats::Balance:
+		return BalanceRegenRate;
 		default:
 			return 0.f;
 	}

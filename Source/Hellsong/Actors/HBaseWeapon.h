@@ -21,6 +21,9 @@ public:
 	AHBaseWeapon();
 	virtual void Tick(float DeltaTime) override;
 	
+	UFUNCTION(BlueprintCallable)
+	void ApplyHitStop(AActor* HitActor, float Duration, float TimeDilation = 0.05f);
+
 protected:
 	virtual void BeginPlay() override;
 
